@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Edit Book</h1>
+    <form action="/updatebook/{{ edit.id }}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{edit.title}}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="author" class="form-label">Author:</label>
+            <input type="text" class="form-control" id="author" name="author" value="{{edit.author}}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="genre" class="form-label">Genre:</label>
+            <input type="text" class="form-control" id="genre" name="genre" value="{{edit.genre}}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="price" class="form-label">Price:</label>
+            <input type="number" class="form-control" id="price" name="price" value="{{edit.price}}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="published_date" class="form-label">Published Date:</label>
+            <input type="date" class="form-control" id="published_date" name="published_date" value="{{edit.published_date}}" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update Book</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstall Admin</title>
+    <link href="{% static 'adminstyle.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Bookstall Admin Page</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/availablebooks/">Books</a></li>
+            <li><a href="/savebook/">Add Book</a></li>
+            <li><a href="/billing_details/">Orders</a></li>
+            
+        </ul>
+    </nav>
+    <main>
+        <section id="books">
+            <h2>Book List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Price</th>
+                        <th>date</th>
+                        <th>Actions</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in book %}
+                    <tr>
+                        <td>{{b.title}}</td>
+                        <td>{{b.author}}</td>
+                        <td>{{b.genre}}</td>
+                        <td>{{b.price}}</td>
+                        <td>{{b.published_date}}</td>
+                        <td><a href='/editbook/{{b.id}}'>Edit</a> <a href='/deletebook/{{b.id}}'>Delete</a></td>
+                    </tr>
+                    {% endfor %} 
+                    <!-- Add more book records here -->
+                </tbody>
+            </table>
+        </section>
+        <section id="add-book">
+            <h2>Add a New Book</h2>
+            <form action="/savebook/" method='post'>
+                {% csrf_token %}
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" required>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+
+                <label for="published_date">published_date:</label>
+                <input type="date" id="price" name="published_date" required>
+
+                <button type="submit">Add Book</button>
+            </form>
+        </section>
+    </main>
+    
+</body>
+</html>
